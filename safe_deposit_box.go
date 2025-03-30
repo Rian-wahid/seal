@@ -44,11 +44,11 @@ func obfuscate(k, dt []byte){
 		dt[i],dt[i+1],dt[i+2],dt[i+3],dt[i+4],dt[i+5],dt[i+6],dt[i+7]=dt[i+1],dt[i+4],dt[i+5],dt[i+2],dt[i+7],dt[i],dt[i+3],dt[i+6]
 	}
 	a:=binary.BigEndian.Uint32(k[:4])
-        b:=binary.BigEndian.Uint32(k[4:8])
+	b:=binary.BigEndian.Uint32(k[4:8])
         c:=binary.BigEndian.Uint32(k[8:12])
         d:=binary.BigEndian.Uint32(k[12:])
 	rk:=make([]byte,16)
-	RandOP(2)
+	VeryRandOP()
 	for i:=0; i<len(dt); i+=16 {
 		a+=b
 		b^=c
@@ -76,7 +76,7 @@ func obfuscate(k, dt []byte){
 		}
 
 	}
-	RandOP(2)
+	RandOP(1)
 }
 
 func deobfuscate(k,dt []byte){
@@ -85,7 +85,7 @@ func deobfuscate(k,dt []byte){
         c:=binary.BigEndian.Uint32(k[8:12])
         d:=binary.BigEndian.Uint32(k[12:])
 	rk:=make([]byte,16)
-	RandOP(2)
+	VeryRandOP()
 	for i:=0; i<len(dt); i+=16 {
                 a+=b
                 b^=c
@@ -113,7 +113,7 @@ func deobfuscate(k,dt []byte){
                 }
 
         }
-	RandOP(2)
+	RandOP(1)
 
 	for i:=0; i<len(dt); i+=8{
 		if i+7>=len(dt) {

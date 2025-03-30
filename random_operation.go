@@ -101,4 +101,9 @@ func RandOP(i int){
 	}
 }
 
+func VeryRandOP(){
 
+	b:=[]byte{0}
+	rand.Read(b)
+	RandOP(1+int(b[0]))
+}
